@@ -14,6 +14,7 @@ partir dos Kaggle Secrets.
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import subprocess
 from pathlib import Path
@@ -58,14 +59,53 @@ def gguf_commands(merged: Path, out: Path, name: str, llama_cpp: Path, python: s
     ]
 
 
+def legacy_tokenizer_config(cfg: dict) -> dict:
+    """tokenizer_config.json do transformers 5 lido pelo transformers 4 do conversor do llama.cpp.
+
+    O transformers 5 grava os tokens especiais extras como lista em
+    `extra_special_tokens`; o 4 espera ali um dicionário e quebra com
+    "'list' object has no attribute 'keys'". A lista volta para o nome antigo,
+    `additional_special_tokens`.
+    """
+    cfg = dict(cfg)
+    extra = cfg.get("extra_special_tokens")
+    if isinstance(extra, list):
+        del cfg["extra_special_tokens"]
+        merged = list(cfg.get("additional_special_tokens") or [])
+        cfg["additional_special_tokens"] = merged + [t for t in extra if t not in merged]
+    return cfg
+
+
+def conversion_view(merged: Path, view: Path) -> Path:
+    """Cópia leve do modelo merged para o conversor: links simbólicos, tokenizer_config ajustado.
+
+    O merged original fica intacto, no formato do transformers 5, para quem
+    baixar do Hub.
+    """
+    if view.exists():
+        view.mkdir(parents=True)
+    for f in merged.iterdir():
+        if f.name == "tokenizer_config.json":
+            cfg = json.loads(f.read_text())
+            (view / f.name).write_text(json.dumps(legacy_tokenizer_config(cfg), ensure_ascii=False, indent=2))
+        else:
+            (view / f.name).symlink_to(f.resolve())
+    return view
+
+
 def gguf(merged: Path, out: Path, name: str, llama_cpp: Path, python: str, quant: str = "Q4_K_M") -> Path:
     out.mkdir(parents=True, exist_ok=True)
-    for cmd in gguf_commands(merged, out, name, llama_cpp, python, quant):
-        cmd = [str(c) for c in cmd]
-        print("$", " ".join(cmd), flush=True)
-        subprocess.run(cmd, check=True)
+    view = conversion_view(merged, out / "_convert_src")
+    try:
+        for cmd in gguf_commands(view, out, name, llama_cpp, python, quant):
+            cmd = [str(c) for c in cmd]
+            print("$", " ".join(cmd), flush=True)
+            subprocess.run(cmd, check=True)
+    finally:
+        shutil.rmtree(view, ignore_errors=True)  # não deixa links soltos irem para o Hub
     q = out / f"{name}-{quant.lower()}.gguf"
     (out / f"{name}-f16.gguf").unlink(missing_ok=True)  # só o quantizado vai para o Hub
+    shutil.rmtree(view)
     (out / "Modelfile").write_text(modelfile(q.name))
     return q
 

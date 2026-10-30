@@ -37,3 +37,29 @@ def test_train_module_imports_without_gpu_libs():
                               batch_size=8, grad_accum=2, max_length=1024, seed=42)
     cfg = t.training_config(args)
     assert cfg["lora_r"] == 16 and "q_proj" in cfg["target_modules"]
+
+
+def test_legacy_tokenizer_config_converte_lista():
+    from distill.export import legacy_tokenizer_config
+
+    cfg = {"extra_special_tokens": ["<|im_start|>", "<|im_end|>"], "model_max_length": 10}
+    out = legacy_tokenizer_config(cfg)
+    assert "extra_special_tokens" not in out
+    assert out["additional_special_tokens"] == ["<|im_start|>", "<|im_end|>"]
+    assert out["model_max_length"] == 10 and "extra_special_tokens" in cfg  # não muta a entrada
+    assert legacy_tokenizer_config({"extra_special_tokens": {"a": "b"}}) == {"extra_special_tokens": {"a": "b"}}
+
+
+def test_conversion_view_preserva_merged(tmp_path):
+    import json
+
+    from distill.export import conversion_view
+
+    merged = tmp_path / "merged"
+    merged.mkdir()
+    (merged / "model.safetensors").write_bytes(b"w")
+    (merged / "tokenizer_config.json").write_text(json.dumps({"extra_special_tokens": ["<x>"]}))
+    view = conversion_view(merged, tmp_path / "view")
+    assert (view / "model.safetensors").is_symlink()
+    assert json.loads((view / "tokenizer_config.json").read_text()) == {"additional_special_tokens": ["<x>"]}
+    assert json.loads((merged / "tokenizer_config.json").read_text()) == {"extra_special_tokens": ["<x>"]}
