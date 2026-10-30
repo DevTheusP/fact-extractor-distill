@@ -18,6 +18,10 @@ Só que um 7B para cada mensagem é caro. Este projeto destila esse extrator par
 Tudo o que precisa de GPU roda num notebook público do Kaggle (T4); localmente ficam o código, os
 testes e a geração de dados.
 
+> **Primeira rodada (2026-10-30):** a recuperação ficou em 82–83% para todos os extratores,
+> contra 98% publicados. O motivo, a correção na memória (`v5_guarded`) e a correção nos dados
+> estão em [`docs/diagnostico.md`](docs/diagnostico.md).
+
 ## Resultados
 
 > Os números abaixo são preenchidos depois da execução no Kaggle (`notebooks/fact_extractor_distill.ipynb`).
