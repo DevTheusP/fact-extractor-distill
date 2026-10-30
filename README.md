@@ -25,7 +25,7 @@ aluno Qwen2.5-0.5B-Instruct com LoRA r=16, 2 épocas, treinado com os 2433 rótu
 passaram nos verificadores (de 3000). Os arquivos da rodada estão em
 [`results/kaggle-run2/`](results/kaggle-run2/), e o modelo e o dataset estão no Hugging Face:
 [modelo](https://huggingface.co/DevTheusP/qwen2.5-0.5b-fact-extractor-ptbr) ·
-[dataset](https://huggingface.co/datasets/DevTheusP/fact-extractor-distill-ptbr) · [notebook no Kaggle](https://www.kaggle.com/code/devtheusp/notebook9d21d68a42).
+[dataset](https://huggingface.co/datasets/DevTheusP/fact-extractor-distill-ptbr) · [notebook no Kaggle](https://www.kaggle.com/code/devtheusp/destilando-um-extrator-de-mem-ria).
 
 A primeira rodada (sem verificadores) deu 82–83% de recuperação para todos os extratores. O que
 estava errado e como foi corrigido está em [`docs/diagnostico.md`](docs/diagnostico.md).
