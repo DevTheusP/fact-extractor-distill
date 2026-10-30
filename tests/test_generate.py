@@ -107,3 +107,11 @@ def test_cli_writes_jsonl(tmp_path, monkeypatch):
     main()
     assert len(read_jsonl(tmp_path / "train.jsonl")) == 30
     assert len(read_jsonl(tmp_path / "test_synth.jsonl")) == 5
+
+
+def test_rule_guard_marks_rule_keys_as_distractors(splits):
+    rg = [e for e in splits["train"] if e.category == "rule_guard"]
+    assert rg
+    for e in rg:
+        assert e.distractor_keys and set(e.distractor_keys) <= set(e.existing_keys)
+        assert all(i.key not in e.distractor_keys for i in e.intents)

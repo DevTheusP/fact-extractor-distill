@@ -37,7 +37,8 @@ def test_label_and_build_sft(data):
     assert len(rows) == 80 and all(r["teacher"]["schema_ok"] for r in rows)
     assert teacher.schemas[0] == SCHEMA  # rotulagem guiada
     records, stats = build_sft(rows)
-    assert stats == {"kept": 80, "dropped_invalid": 0}
+    assert stats["kept"] == 80 and stats["dropped_invalid"] == 0
+    assert stats["dropped_unrelated_existing_key"] == stats["dropped_english_statement"] == 0
     assert records[0]["id"] == rows[0]["id"]
     q = teacher_vs_gold(rows)
     assert q["overall"]["value_f1"] == 1.0 and q["overall"]["empty_accuracy"] == 1.0
@@ -117,3 +118,40 @@ def test_score_against_ollama_reference():
               "latency_s": None, "completion_tokens": None} for r in rows]
     overall, _ = score(rows, preds, "professor_ollama")
     assert overall["strict_f1"] == 1.0 and overall["empty_accuracy"] == 1.0
+
+
+def _row(facts, existing=(), intents=(("a.region", "x", "semantic"),), reuse=None):
+    return {"id": "r", "text": "t", "existing_keys": list(existing), "reuse_key": reuse,
+            "intents": [{"key": k, "value": v, "kind": kd, "optional": False} for k, v, kd in intents],
+            "teacher": {"schema_ok": True, "facts": facts}}
+
+
+def _f(key, value="x", kind="semantic", statement="O serviço roda em x."):
+    return {"subject_key": key, "value": value, "kind": kind, "statement": statement}
+
+
+def test_label_issues_flags_unrelated_existing_key_and_english():
+    from distill.label import label_issues
+
+    ok = _row([_f("a.region")], existing=["rules.force_push"])
+    assert label_issues(ok) == []
+    hallucinated = _row([_f("a.region"), _f("rules.force_push", "false")], existing=["rules.force_push"])
+    assert label_issues(hallucinated) == ["unrelated_existing_key"]
+    reuse = _row([_f("a_service.region")], existing=["a_service.region"], reuse="a_service.region")
+    assert label_issues(reuse) == []
+    english = _row([_f("a.region", statement="The service must run in x.")])
+    assert label_issues(english) == ["english_statement"]
+
+
+def test_build_sft_filters_and_repairs_kind():
+    rows = [
+        _row([_f("a.region", kind="procedural")]),  # kind errado: conserta
+        _row([_f("a.region"), _f("rules.force_push", "false")], existing=["rules.force_push"]),
+        _row([_f("a.region", statement="The service is in x.")]),
+    ]
+    records, stats = build_sft(rows)
+    assert stats["kept"] == 1 and stats["kind_repaired"] == 1
+    assert stats["dropped_unrelated_existing_key"] == 1 and stats["dropped_english_statement"] == 1
+    assert '"kind": "semantic"' in records[0]["completion"][0]["content"] or "semantic" in str(records[0])
+    _, raw = build_sft(rows, filter_labels=False)
+    assert raw["kept"] == 3

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 from .bench_data import bench_test_cases
@@ -49,16 +50,73 @@ def label_examples(engine: Engine, examples: list[Example], guided: bool = True,
     return rows
 
 
-def build_sft(rows: list[dict]) -> tuple[list[dict], dict]:
-    """Só entram rótulos válidos. Devolve os registros e quantos ficaram de fora."""
-    records, dropped = [], 0
+_EN = re.compile(r"\b(the|is|are|must|should|will|be|for|and|of|to|uses?|never|always)\b", re.I)
+_PT = re.compile(r"\b(o|a|os|as|é|são|de|do|da|em|no|na|deve|usa|nunca|sempre|que|para)\b", re.I)
+
+
+def is_english(statement: str) -> bool:
+    """Heurística de palavras funcionais: o prompt pede o statement em português."""
+    return len(_EN.findall(statement)) > len(_PT.findall(statement))
+
+
+def label_issues(row: dict) -> list[str]:
+    """Verificadores sobre o rótulo do professor, usando o gabarito do template.
+
+    - unrelated_existing_key: escreve valor numa chave existente que não é a da intenção nem a
+      reutilizável. É o vício que, copiado pelo aluno, desligou a regra de force push no
+      agent-memory-bench (a memória por chave trata como atualização).
+    - english_statement: statement em inglês, contra o prompt.
+    """
+    facts = row["teacher"]["facts"]
+    allowed = {i["key"] for i in row.get("intents", [])} | ({row["reuse_key"]} if row.get("reuse_key") else set())
+    existing = set(row["existing_keys"])
+    issues = []
+    if any(f["subject_key"] in existing and f["subject_key"] not in allowed for f in facts):
+        issues.append("unrelated_existing_key")
+    if any(is_english(f["statement"]) for f in facts):
+        issues.append("english_statement")
+    return issues
+
+
+def repair_kinds(row: dict) -> tuple[list[dict], int]:
+    """Corrige o kind pelo gabarito quando a chave do fato é a da intenção do template."""
+    kinds = {i["key"]: i["kind"] for i in row.get("intents", [])}
+    if row.get("reuse_key") and len(row.get("intents", [])) == 1:
+        kinds[row["reuse_key"]] = row["intents"][0]["kind"]
+    out, fixed = [], 0
+    for f in row["teacher"]["facts"]:
+        want = kinds.get(f["subject_key"])
+        if want and f["kind"] != want:
+            f, fixed = {**f, "kind": want}, fixed + 1
+        out.append(f)
+    return out, fixed
+
+
+def build_sft(rows: list[dict], filter_labels: bool = True) -> tuple[list[dict], dict]:
+    """Só entram rótulos válidos e, com filter_labels, aprovados pelos verificadores.
+
+    Rejeição por verificador (em vez de consertar o fato): um fato numa chave errada pode ser o
+    fato certo com a chave errada; tirar só ele ensinaria o aluno a devolver lista vazia.
+    """
+    records = []
+    stats = {"dropped_invalid": 0, "dropped_unrelated_existing_key": 0, "dropped_english_statement": 0,
+             "kind_repaired": 0}
     for r in rows:
         t = r["teacher"]
         if not t["schema_ok"]:
-            dropped += 1
+            stats["dropped_invalid"] += 1
             continue
-        records.append(sft_record(r["text"], r["existing_keys"], t["facts"], r["id"]))
-    return records, {"kept": len(records), "dropped_invalid": dropped}
+        facts = t["facts"]
+        if filter_labels:
+            issues = label_issues(r)
+            if issues:
+                stats[f"dropped_{issues[0]}"] += 1
+                continue
+            facts, fixed = repair_kinds(r)
+            stats["kind_repaired"] += fixed
+        records.append(sft_record(r["text"], r["existing_keys"], facts, r["id"]))
+    stats["kept"] = len(records)
+    return records, stats
 
 
 def gold_reference(row: dict) -> tuple[list[dict], list[str]]:

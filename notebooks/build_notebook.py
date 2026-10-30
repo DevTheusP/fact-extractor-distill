@@ -56,7 +56,7 @@ STUDENT_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
 ALSO_STUDENT_1_5B = False   # também destila para o Qwen2.5-1.5B-Instruct (+~1 h)
 TEACHER_MODEL = "Qwen/Qwen2.5-7B-Instruct-AWQ"
 
-N_TRAIN, N_VAL, N_TEST = 3000, 200, 300
+N_TRAIN, N_VAL, N_TEST = 4000, 200, 300  # ~20% dos rótulos caem nos verificadores
 EPOCHS = 2
 LEARNING_RATE = 2e-4
 LORA_R, LORA_ALPHA = 16, 32
@@ -429,6 +429,12 @@ if PUSH_TO_HUB:
     for f in ["train", "val", "test_synth", "test_bench", "sft_train", "sft_val"]:
         shutil.copy(f"data/labeled/{f}.jsonl", ds / "data" / f"{f}.jsonl")
     shutil.copy("data/labeled/label_report.json", ds / "label_report.json")
+    # predições, relatórios e o que cada extrator escreveu no benchmark: a sessão do Kaggle apaga
+    # /kaggle/working, o Hub não (os traces ficam de fora pelo tamanho)
+    shutil.copytree("results/eval", ds / "results" / "eval", dirs_exist_ok=True)
+    (ds / "results" / "bench").mkdir(parents=True, exist_ok=True)
+    for p in Path("results/bench").glob("*.json"):
+        shutil.copy(p, ds / "results" / "bench" / p.name)
     fill_card("hf/DATASET_CARD.md", ds / "README.md", label_quality_md())
     print(push(ds, HF_REPO_DATASET, repo_type="dataset"))
     os.environ.pop("HF_TOKEN")

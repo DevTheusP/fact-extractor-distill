@@ -57,7 +57,7 @@ def bench_table(bench: dict[str, dict]) -> str:
     lines = ["| extrator | memória | " + " | ".join(cols) + " | falhas de JSON |", "|" + "---|" * (len(cols) + 3)]
     for name in _order(bench):
         b = bench[name]
-        for version in ("v1_naive", "v2_keyed", "v3_decay_rank", "v4_decay_tier"):
+        for version in ("v1_naive", "v2_keyed", "v3_decay_rank", "v4_decay_tier", "v5_guarded"):
             h = b["headline"].get(version)
             if not h:
                 continue
@@ -136,11 +136,19 @@ def plot_bench(bench: dict[str, dict], out: Path) -> Path:
     names = _order(bench)
     fig, ax = plt.subplots(figsize=(7, 3.4), facecolor=SURFACE)
     _style(ax)
-    ys = [bench[n]["headline"]["v2_keyed"]["retrieval"] for n in names]
-    bars = ax.bar(names, ys, 0.6, color=[_color(n, names) for n in names])
-    for b, y in zip(bars, ys):
-        ax.text(b.get_x() + b.get_width() / 2, y + 0.01, f"{y:.0%}", ha="center", va="bottom",
-                fontsize=9, color=INK_2)
+    versions = [v for v in ("v2_keyed", "v5_guarded") if all(v in bench[n]["headline"] for n in names)]
+    width = 0.7 / len(versions)
+    for j, version in enumerate(versions):
+        xs = [i + (j - (len(versions) - 1) / 2) * width for i in range(len(names))]
+        ys = [bench[n]["headline"][version]["retrieval"] for n in names]
+        bars = ax.bar(xs, ys, width * 0.92, color=[_color(n, names) for n in names],
+                      alpha=1.0 if j == len(versions) - 1 else 0.45, label=version)
+        for b, y in zip(bars, ys):
+            ax.text(b.get_x() + b.get_width() / 2, y + 0.01, f"{y:.0%}", ha="center", va="bottom",
+                    fontsize=8, color=INK_2)
+    ax.set_xticks(range(len(names)), names)
+    if len(versions) > 1:
+        ax.legend(frameon=False, fontsize=8, loc="lower right")
     naive = [bench[n]["headline"]["v1_naive"]["retrieval"] for n in names]
     if naive:
         ax.axhline(naive[0], color=INK_2, linestyle="--", linewidth=1)
@@ -148,7 +156,7 @@ def plot_bench(bench: dict[str, dict], out: Path) -> Path:
                 va="bottom", fontsize=8, color=INK_2)
     ax.set_ylim(0, 1.1)
     ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0%}")
-    ax.set_title("Recuperação média da v2_keyed por extrator", color=INK, loc="left")
+    ax.set_title("Recuperação média por extrator (v2 sem proteção, v5 com)", color=INK, loc="left")
     fig.tight_layout()
     path = out / "benchmark_recuperacao.png"
     fig.savefig(path, dpi=150)

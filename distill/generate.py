@@ -566,9 +566,25 @@ class Generator:
         text = _fill(phrase, ap, v=v) + tail
         return self._new(text, "mixed_negation", [Intent(f"{ak}.{key}", v, "semantic")], self._base_keys())
 
+    def rule_guard(self) -> Example:
+        """Mudança ou config de uma área com regras já na lista de chaves: as regras não podem ser tocadas.
+
+        Ensina o caso que o agent-memory-bench expôs: na mensagem da migração de região, o aluno
+        da primeira rodada também escreveu `coding_rules.force_push = false`, e a memória por
+        chave desativou a regra. Aqui as chaves de regra são distratoras.
+        """
+        ex = self.update() if self.rng.random() < 0.6 else self.config()
+        pool = sorted({r[0] for r in self.rules} | {r[0] for r in NUM_RULES} - set(ex.existing_keys))
+        rule_keys = self.rng.sample(pool, self.rng.choice([1, 1, 2]))
+        ex.existing_keys = sorted(set(ex.existing_keys) | set(rule_keys))
+        ex.distractor_keys = sorted(set(ex.distractor_keys) | set(rule_keys))
+        ex.category = "rule_guard"
+        return ex
+
     CATEGORY_WEIGHTS = {
         "config": 18, "update": 9, "key_reuse": 7, "reinforcement": 4, "rule": 13, "convention": 7,
         "noise": 14, "opinion": 4, "negated": 7, "external": 6, "multi": 8, "mixed_negation": 3,
+        "rule_guard": 8,
     }
 
     def one(self, category: str | None = None) -> Example:
