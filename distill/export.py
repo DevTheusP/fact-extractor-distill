@@ -83,7 +83,8 @@ def conversion_view(merged: Path, view: Path) -> Path:
     baixar do Hub.
     """
     if view.exists():
-        view.mkdir(parents=True)
+        shutil.rmtree(view)
+    view.mkdir(parents=True)
     for f in merged.iterdir():
         if f.name == "tokenizer_config.json":
             cfg = json.loads(f.read_text())
