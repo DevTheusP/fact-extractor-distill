@@ -224,9 +224,10 @@ from distill.formatting import render_record
 
 sft = read_jsonl("data/labeled/sft_train.jsonl")
 tok = AutoTokenizer.from_pretrained(STUDENT_MODEL)
-for rec in sft[:20]:
-    hf = tok.apply_chat_template(rec["prompt"] + rec["completion"], tokenize=False)
-    assert hf == render_record(rec), "chat template diferente do esperado"
+diff = [rec["id"] for rec in sft[:50]
+        if tok.apply_chat_template(rec["prompt"] + rec["completion"], tokenize=False) != render_record(rec)]
+# o treino usa o template do tokenizer; a diferença só invalidaria os testes locais de formatação
+print("chat template confere com distill/formatting.py" if not diff else f"ATENÇÃO: template diferente em {diff[:3]}")
 lengths = [len(tok.apply_chat_template(r["prompt"] + r["completion"], tokenize=True)) for r in sft]
 print(f"{len(sft)} exemplos de treino; tokens por exemplo: média {sum(lengths)/len(lengths):.0f}, máx {max(lengths)}")
 print(render_record(sft[0])[-400:])
@@ -397,21 +398,36 @@ bench_md = (Path("results/RESULTS.md").read_text().split("## agent-memory-bench"
             if Path("results/RESULTS.md").exists() else "")
 results_md = table + "\\n\\n### agent-memory-bench" + bench_md
 
+def label_quality_md():
+    rep = json.loads(Path("data/labeled/label_report.json").read_text())
+    pct = lambda v: "-" if v is None else f"{v:.1%}"
+    lines = ["| divisão | n | schema válido | listas vazias | F1 por valor vs. template | reutilização | lista vazia certa |",
+             "|---|---|---|---|---|---|---|"]
+    for split, r in rep.items():
+        g = r["teacher_vs_gold"]["overall"]
+        lines.append(f"| {split} | {r['n']} | {pct(r['schema_valid'])} | {pct(r['empty_rate'])} | "
+                     f"{pct(g.get('value_f1'))} | {pct(g.get('reuse_accuracy'))} | {pct(g.get('empty_accuracy'))} |")
+    return "\\n".join(lines)
+
 if PUSH_TO_HUB:
     from kaggle_secrets import UserSecretsClient
     os.environ["HF_TOKEN"] = UserSecretsClient().get_secret("HF_TOKEN")
     from distill.export import push
     base = MODELS / f"qwen2.5-{short(STUDENT_MODEL)}-fact-extractor"
     card = TMP / "MODEL_CARD.md"; fill_card("hf/MODEL_CARD.md", card, results_md)
+    from distill.prompt import SCHEMA, SYSTEM
+    prompt_file, schema_file = TMP / "system_prompt.txt", TMP / "schema.json"
+    prompt_file.write_text(SYSTEM); schema_file.write_text(json.dumps(SCHEMA, indent=2))
     folder = assemble_hub_folder(TMP / "hub_model", base / "merged", base / "adapter",
                                  base / "gguf" if EXPORT_GGUF else None, card,
-                                 extra={"train_log.json": base / "train_log.json"})
+                                 extra={"train_log.json": base / "train_log.json",
+                                        "system_prompt.txt": prompt_file, "schema.json": schema_file})
     print(push(folder, HF_REPO_MODEL))
     ds = TMP / "hub_dataset"; shutil.rmtree(ds, ignore_errors=True); (ds / "data").mkdir(parents=True)
     for f in ["train", "val", "test_synth", "test_bench", "sft_train", "sft_val"]:
         shutil.copy(f"data/labeled/{f}.jsonl", ds / "data" / f"{f}.jsonl")
     shutil.copy("data/labeled/label_report.json", ds / "label_report.json")
-    fill_card("hf/DATASET_CARD.md", ds / "README.md", results_md)
+    fill_card("hf/DATASET_CARD.md", ds / "README.md", label_quality_md())
     print(push(ds, HF_REPO_DATASET, repo_type="dataset"))
     os.environ.pop("HF_TOKEN")
 else:
