@@ -66,7 +66,9 @@ def main() -> None:
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from trl import SFTConfig, SFTTrainer
 
-    bf16 = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+    # is_bf16_supported() devolve True na T4 por contar emulação, mas o gemm em bf16 exige
+    # compute capability 8.0 (Ampere); por isso a checagem é pela capability
+    bf16 = torch.cuda.is_available() and torch.cuda.get_device_capability()[0] >= 8
     cfg = training_config(args)
     files = {"train": str(args.data_dir / "sft_train.jsonl"), "validation": str(args.data_dir / "sft_val.jsonl")}
     ds = load_dataset("json", data_files=files)
