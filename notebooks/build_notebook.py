@@ -138,6 +138,8 @@ sys.path.insert(0, str(REPO))
 # ambiente principal: treino, avaliação e benchmark (mantém o torch do Kaggle)
 run(sys.executable, "-m", "pip", "install", "-q", "-r", "requirements-kaggle.txt")
 run(sys.executable, "-m", "pip", "install", "-q", "-e", ".", "--no-deps")
+# o Kaggle traz torchao 0.10, que o PEFT 0.21 recusa (exige > 0.16); o projeto não usa torchao
+run(sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchao", check=False)
 
 # vLLM num venv separado: ele fixa a própria versão do torch
 run(sys.executable, "-m", "pip", "install", "-q", "uv")
