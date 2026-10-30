@@ -1,0 +1,11 @@
+# Ambiente principal do notebook (treino, merge, avaliação, benchmark).
+# Versões conferidas no PyPI em 2026-10-30. O torch do próprio Kaggle é mantido.
+transformers==5.22.1
+trl==1.17.0
+peft==0.21.2
+accelerate==1.15.0
+datasets==5.1.0
+sentence-transformers==6.2.0
+huggingface_hub==2.4.0
+sqlite-vec==0.1.9
+jsonschema==4.26.0

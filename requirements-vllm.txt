@@ -1,0 +1,5 @@
+# Venv separado (/kaggle/tmp/vllm-env): o vLLM fixa a própria versão do torch.
+# 0.32.0 é a última versão no PyPI em 2026-10-30. Na T4 (Turing, sm_75) use
+# --dtype half (sem bfloat16). Se essa versão falhar na T4, tente a anterior
+# (ver KAGGLE.md, seção "Se o vLLM não subir").
+vllm==0.32.0

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/generated/
+data/labeled/
+results/
+models/
+logs/
+*.gguf

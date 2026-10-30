@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fact-extractor-distill"
+version = "0.1.0"
+description = "Destilação do extrator de fatos do agent-memory-bench: Qwen2.5-7B (professor) para Qwen2.5-0.5B (aluno) com LoRA"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "DevTheusP" }]
+dependencies = ["jsonschema>=4.23"]
+
+[project.optional-dependencies]
+# só no Kaggle (GPU); o vLLM fica num venv separado, ver requirements-vllm.txt
+gpu = [
+    "torch>=2.6",
+    "transformers>=5.0,<6",
+    "trl>=1.0,<2",
+    "peft>=0.18",
+    "accelerate>=1.10",
+    "datasets>=4.0",
+    "sentence-transformers>=5.0",
+    "sqlite-vec>=0.1.9",
+    "huggingface_hub>=1.0",
+    "matplotlib>=3.9",
+]
+dev = ["pytest>=8", "nbformat>=5.10", "sqlite-vec>=0.1.9", "matplotlib>=3.9"]
+
+[tool.setuptools.packages.find]
+include = ["distill*"]
+
+[tool.setuptools.package-data]
+distill = ["resources/bench/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "tests"]
