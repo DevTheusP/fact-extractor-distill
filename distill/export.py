@@ -106,7 +106,6 @@ def gguf(merged: Path, out: Path, name: str, llama_cpp: Path, python: str, quant
         shutil.rmtree(view, ignore_errors=True)  # não deixa links soltos irem para o Hub
     q = out / f"{name}-{quant.lower()}.gguf"
     (out / f"{name}-f16.gguf").unlink(missing_ok=True)  # só o quantizado vai para o Hub
-    shutil.rmtree(view)
     (out / "Modelfile").write_text(modelfile(q.name))
     return q
 

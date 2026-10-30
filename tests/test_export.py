@@ -63,3 +63,30 @@ def test_conversion_view_preserva_merged(tmp_path):
     assert (view / "model.safetensors").is_symlink()
     assert json.loads((view / "tokenizer_config.json").read_text()) == {"additional_special_tokens": ["<x>"]}
     assert json.loads((merged / "tokenizer_config.json").read_text()) == {"extra_special_tokens": ["<x>"]}
+
+
+def test_gguf_fluxo_completo_com_comandos_falsos(tmp_path, monkeypatch):
+    import json
+    import subprocess
+
+    from distill import export
+
+    merged = tmp_path / "merged"
+    merged.mkdir()
+    (merged / "model.safetensors").write_bytes(b"w")
+    (merged / "tokenizer_config.json").write_text(json.dumps({"extra_special_tokens": ["<x>"]}))
+    out = tmp_path / "gguf"
+
+    def fake_run(cmd, check):
+        if "--outfile" in cmd:
+            src = Path(cmd[2])
+            assert json.loads((src / "tokenizer_config.json").read_text()) == {"additional_special_tokens": ["<x>"]}
+            Path(cmd[cmd.index("--outfile") + 1]).write_bytes(b"f16")
+        else:
+            Path(cmd[2]).write_bytes(b"q4")
+        return subprocess.CompletedProcess(cmd, 0)
+
+    monkeypatch.setattr(export.subprocess, "run", fake_run)
+    q = export.gguf(merged, out, "x", tmp_path / "lc", "/py")
+    assert q.read_bytes() == b"q4" and (out / "Modelfile").exists()
+    assert sorted(p.name for p in out.iterdir()) == ["Modelfile", "x-q4_k_m.gguf"]
