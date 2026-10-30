@@ -20,7 +20,7 @@ def serve_command(vllm_bin: str, model: str, *, served_name: str, port: int = 80
                   enforce_eager: bool = False, extra: list[str] | None = None) -> list[str]:
     """Linha de comando do `vllm serve` (CLI documentada do vLLM)."""
     cmd = [
-        vllm_bin, "serve", model,
+        str(vllm_bin), "serve", str(model),
         "--served-model-name", served_name,
         "--port", str(port),
         "--dtype", dtype,  # T4 (Turing) não tem bfloat16
@@ -30,7 +30,7 @@ def serve_command(vllm_bin: str, model: str, *, served_name: str, port: int = 80
     ]
     if enforce_eager:
         cmd.append("--enforce-eager")
-    return cmd + (extra or [])
+    return cmd + [str(a) for a in (extra or [])]
 
 
 def wait_ready(base_url: str, timeout: float = 900.0, proc: subprocess.Popen | None = None,

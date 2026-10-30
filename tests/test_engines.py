@@ -98,3 +98,14 @@ def test_serve_command():
     assert cmd[cmd.index("--dtype") + 1] == "half"
     assert cmd[cmd.index("--served-model-name") + 1] == "teacher"
     assert "--enforce-eager" in cmd and cmd[cmd.index("--port") + 1] == "8001"
+
+
+def test_serve_command_aceita_path():
+    from pathlib import Path
+
+    from distill.server import serve_command
+
+    cmd = serve_command(Path("/tmp/vllm-env/bin/vllm"), "Qwen/x", served_name="t",
+                        extra=[Path("/tmp/a")])
+    assert all(isinstance(c, str) for c in cmd)
+    " ".join(cmd)

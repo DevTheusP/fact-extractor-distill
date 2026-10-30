@@ -61,6 +61,7 @@ def gguf_commands(merged: Path, out: Path, name: str, llama_cpp: Path, python: s
 def gguf(merged: Path, out: Path, name: str, llama_cpp: Path, python: str, quant: str = "Q4_K_M") -> Path:
     out.mkdir(parents=True, exist_ok=True)
     for cmd in gguf_commands(merged, out, name, llama_cpp, python, quant):
+        cmd = [str(c) for c in cmd]
         print("$", " ".join(cmd), flush=True)
         subprocess.run(cmd, check=True)
     q = out / f"{name}-{quant.lower()}.gguf"
