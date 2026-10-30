@@ -1,0 +1,131 @@
+{"id": "bench-000", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"payment_service.region\",\n      \"value\": \"us-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"O serviço de pagamentos é executado na região us-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": null, "completion_tokens": 62}
+{"id": "bench-001", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"version_control_policy.force_push\",\n      \"value\": \"never\",\n      \"kind\": \"procedural\",\n      \"statement\": \"A equipe nunca deve realizar force push na main.\"\n    }\n  ]\n}", "error": null, "latency_s": null, "completion_tokens": 58}
+{"id": "bench-002", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-003", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-004", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-005", "raw": "{  \n  \"facts\": []  \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-006", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-007", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-008", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-009", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": 0.28546977600012724, "completion_tokens": 10}
+{"id": "bench-010", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.28760470599991095, "completion_tokens": 10}
+{"id": "bench-011", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-012", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.261992274000022, "completion_tokens": 9}
+{"id": "bench-013", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-014", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-015", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"payment_service.region\",\n      \"value\": \"sa-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"A partir de agora, o serviço de pagamentos opera na região sa-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": null, "completion_tokens": 65}
+{"id": "bench-016", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-017", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2622890970001208, "completion_tokens": 9}
+{"id": "bench-018", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2869821630001752, "completion_tokens": 10}
+{"id": "bench-019", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-020", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-021", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-022", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-023", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-024", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-025", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-026", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2556725310000729, "completion_tokens": 9}
+{"id": "bench-027", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2579120199998215, "completion_tokens": 9}
+{"id": "bench-028", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-029", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-030", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-031", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-032", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.21385877099987738, "completion_tokens": 7}
+{"id": "bench-033", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": 0.2831213930001013, "completion_tokens": 10}
+{"id": "bench-034", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-035", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-036", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.24044352900000376, "completion_tokens": 8}
+{"id": "bench-037", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-038", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.23990900000012516, "completion_tokens": 8}
+{"id": "bench-039", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.209867038000084, "completion_tokens": 7}
+{"id": "bench-040", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.24106776899998295, "completion_tokens": 8}
+{"id": "bench-041", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-042", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.2121627209999133, "completion_tokens": 7}
+{"id": "bench-043", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-044", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-045", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.28968028300005244, "completion_tokens": 10}
+{"id": "bench-046", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 8}
+{"id": "bench-047", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-048", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 8}
+{"id": "bench-049", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-050", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-051", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": 0.3194394419999753, "completion_tokens": 11}
+{"id": "bench-052", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-053", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-054", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-055", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2601941299999453, "completion_tokens": 9}
+{"id": "bench-056", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": 0.2937550399999509, "completion_tokens": 10}
+{"id": "bench-057", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-058", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-059", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-060", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.21570439199990687, "completion_tokens": 7}
+{"id": "bench-061", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"logging.storage_region\",\n      \"value\": \"us-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"O bucket de logs antigos está localizado na região us-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": 1.6632902999999715, "completion_tokens": 63}
+{"id": "bench-062", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"payments.region\",\n      \"value\": \"us-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"O serviço de pagamentos é executado na região us-east-1, tanto para staging quanto para produção.\"\n    }\n  ]\n}", "error": null, "latency_s": 1.7997714360001282, "completion_tokens": 68}
+{"id": "bench-063", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"version_control.force_push_policy\",\n      \"value\": \"never on main\",\n      \"kind\": \"procedural\",\n      \"statement\": \"The team rule is never to perform a force push on the main branch.\"\n    }\n  ]\n}", "error": null, "latency_s": null, "completion_tokens": 65}
+{"id": "bench-064", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.2097915560000274, "completion_tokens": 7}
+{"id": "bench-065", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.2172265280000829, "completion_tokens": 7}
+{"id": "bench-066", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.218224470999985, "completion_tokens": 7}
+{"id": "bench-067", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-068", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.21661636299995735, "completion_tokens": 7}
+{"id": "bench-069", "raw": "{\n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-070", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.21199044700006198, "completion_tokens": 7}
+{"id": "bench-071", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2862273069999901, "completion_tokens": 10}
+{"id": "bench-072", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-073", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-074", "raw": "{  \n  \"facts\": []  \n}", "error": null, "latency_s": 0.3097227440000552, "completion_tokens": 11}
+{"id": "bench-075", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-076", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-077", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2599483070000588, "completion_tokens": 9}
+{"id": "bench-078", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2634919039999204, "completion_tokens": 9}
+{"id": "bench-079", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2904812829999628, "completion_tokens": 10}
+{"id": "bench-080", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-081", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2891659950000758, "completion_tokens": 10}
+{"id": "bench-082", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-083", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-084", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-085", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-086", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-087", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.26221367100015414, "completion_tokens": 9}
+{"id": "bench-088", "raw": "{  \n  \"facts\": []  \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-089", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-090", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.26038502899996274, "completion_tokens": 9}
+{"id": "bench-091", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-092", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-093", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.215257604000044, "completion_tokens": 7}
+{"id": "bench-094", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"logging.storage_region\",\n      \"value\": \"us-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"O bucket de logs antigos está localizado na região us-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": null, "completion_tokens": 63}
+{"id": "bench-095", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-096", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.21401791099992806, "completion_tokens": 7}
+{"id": "bench-097", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-098", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.21404359999996814, "completion_tokens": 7}
+{"id": "bench-099", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.25949247599987757, "completion_tokens": 9}
+{"id": "bench-100", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"backend.region\",\n      \"value\": \"sa-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"A partir de agora, o serviço de pagamentos será executado na região sa-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": 1.7209047620001456, "completion_tokens": 66}
+{"id": "bench-101", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 8}
+{"id": "bench-102", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": 0.29240171000014925, "completion_tokens": 10}
+{"id": "bench-103", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-104", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-105", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": null, "completion_tokens": 11}
+{"id": "bench-106", "raw": "{ \n  \"facts\": [] \n}", "error": null, "latency_s": 0.316014627000186, "completion_tokens": 11}
+{"id": "bench-107", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.2135499199998776, "completion_tokens": 7}
+{"id": "bench-108", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.23627308099980837, "completion_tokens": 8}
+{"id": "bench-109", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 8}
+{"id": "bench-110", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 8}
+{"id": "bench-111", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-112", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.2103608649999842, "completion_tokens": 7}
+{"id": "bench-113", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-114", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": 0.2625399290000132, "completion_tokens": 9}
+{"id": "bench-115", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"logging.storage_region\",\n      \"value\": \"us-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"O bucket de logs antigos está localizado na região us-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": null, "completion_tokens": 63}
+{"id": "bench-116", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-117", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.21520422399999006, "completion_tokens": 7}
+{"id": "bench-118", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.2173182240001097, "completion_tokens": 7}
+{"id": "bench-119", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-120", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 7}
+{"id": "bench-121", "raw": "{ \"facts\": [] }", "error": null, "latency_s": null, "completion_tokens": 8}
+{"id": "bench-122", "raw": "{ \"facts\": [] }", "error": null, "latency_s": 0.23906964700017852, "completion_tokens": 8}
+{"id": "bench-123", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"payment_service.region\",\n      \"value\": \"us-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"O serviço de pagamento está configurado para usar a região us-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": 1.668887790000099, "completion_tokens": 63}
+{"id": "bench-124", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-125", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-126", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-127", "raw": "{\n  \"facts\": [\n    {\n      \"subject_key\": \"backend.region\",\n      \"value\": \"us-east-1\",\n      \"kind\": \"semantic\",\n      \"statement\": \"O pipeline de deploy do serviço de pagamentos será executado na região us-east-1.\"\n    }\n  ]\n}", "error": null, "latency_s": 1.693384566999839, "completion_tokens": 65}
+{"id": "bench-128", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}
+{"id": "bench-129", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 10}
+{"id": "bench-130", "raw": "{ \n  \"facts\": []\n}", "error": null, "latency_s": null, "completion_tokens": 9}

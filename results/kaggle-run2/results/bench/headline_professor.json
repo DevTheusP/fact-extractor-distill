@@ -1,0 +1,50 @@
+{
+  "name": "professor",
+  "guided": true,
+  "extractor_calls": 93,
+  "extractor_failures": 0,
+  "headline": {
+    "v0_no_memory": {
+      "retrieval": 0.21428571428571427,
+      "ret_update": 0,
+      "ret_scope": 0,
+      "ret_rare_fact": 0,
+      "ret_injection": 1
+    },
+    "v1_naive": {
+      "retrieval": 0.62,
+      "ret_update": 1,
+      "ret_scope": 1,
+      "ret_rare_fact": 0.33714285714285713,
+      "ret_injection": 0
+    },
+    "v2_keyed": {
+      "retrieval": 0.8342857142857143,
+      "ret_update": 1,
+      "ret_scope": 1,
+      "ret_rare_fact": 0.33714285714285713,
+      "ret_injection": 1
+    },
+    "v3_decay_rank": {
+      "retrieval": 0.5465714285714286,
+      "ret_update": 0.975,
+      "ret_scope": 0.14057142857142857,
+      "ret_rare_fact": 0.07428571428571429,
+      "ret_injection": 1
+    },
+    "v4_decay_tier": {
+      "retrieval": 0.5517142857142857,
+      "ret_update": 1,
+      "ret_scope": 0.08571428571428572,
+      "ret_rare_fact": 0.12114285714285714,
+      "ret_injection": 1
+    },
+    "v5_guarded": {
+      "retrieval": 0.9785714285714285,
+      "ret_update": 1,
+      "ret_scope": 1,
+      "ret_rare_fact": 0.9142857142857143,
+      "ret_injection": 1
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{"id": "bench-000", "raw": "[\n  {\n    \"subject_key\": \"infrastructure.region\",\n    \"value\": \"us-east-1\",\n    \"kind\": \"semantic\",\n    \"statement\": \"O serviço de pagamentos é executado na região us-east-1 tanto para staging quanto para produção.\"\n  }\n]", "error": null, "latency_s": null, "completion_tokens": 60}
+{"id": "bench-001", "raw": "[\n  {\n    \"subject_key\": \"version_control.force_push_policy\",\n    \"value\": \"never on main\",\n    \"kind\": \"procedural\",\n    \"statement\": \"A equipe proíbe forçar commits na main.\"\n  }\n]", "error": null, "latency_s": null, "completion_tokens": 54}
+{"id": "bench-002", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-003", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-004", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-005", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-006", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-007", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-008", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-009", "raw": "[]", "error": null, "latency_s": 0.07723988200018539, "completion_tokens": 2}
+{"id": "bench-010", "raw": "[]", "error": null, "latency_s": 0.08205875800013018, "completion_tokens": 2}
+{"id": "bench-011", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-012", "raw": "[]", "error": null, "latency_s": 0.07750171900011082, "completion_tokens": 2}
+{"id": "bench-013", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-014", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-015", "raw": "[\n  {\n    \"subject_key\": \"payment_service.region\",\n    \"value\": \"sa-east-1\",\n    \"kind\": \"semantic\",\n    \"statement\": \"A partir de agora, o serviço de pagamentos opera na região sa-east-1.\"\n  }\n]", "error": null, "latency_s": null, "completion_tokens": 57}
+{"id": "bench-016", "raw": "[]\nA mensagem contém uma opinião passageira que não é durável e não descreve nenhuma regra ou convenção que permaneça válida nas próximas semanas.", "error": null, "latency_s": null, "completion_tokens": 42}
+{"id": "bench-017", "raw": "[]", "error": null, "latency_s": 0.08387936600001922, "completion_tokens": 2}
+{"id": "bench-018", "raw": "[]", "error": null, "latency_s": 0.08259927399990374, "completion_tokens": 2}
+{"id": "bench-019", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-020", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-021", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-022", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-023", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-024", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-025", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-026", "raw": "[]", "error": null, "latency_s": 0.07771915900002568, "completion_tokens": 2}
+{"id": "bench-027", "raw": "[]", "error": null, "latency_s": 0.08356876399989233, "completion_tokens": 2}
+{"id": "bench-028", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-029", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-030", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-031", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-032", "raw": "[]", "error": null, "latency_s": 0.0897677109999222, "completion_tokens": 2}
+{"id": "bench-033", "raw": "[]", "error": null, "latency_s": 0.07756539299998622, "completion_tokens": 2}
+{"id": "bench-034", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-035", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-036", "raw": "[]", "error": null, "latency_s": 0.08528396399992744, "completion_tokens": 2}
+{"id": "bench-037", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-038", "raw": "[]", "error": null, "latency_s": 0.0857807050001611, "completion_tokens": 2}
+{"id": "bench-039", "raw": "[]", "error": null, "latency_s": 0.08214197799998146, "completion_tokens": 2}
+{"id": "bench-040", "raw": "[]", "error": null, "latency_s": 0.08769881200009877, "completion_tokens": 2}
+{"id": "bench-041", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-042", "raw": "[]", "error": null, "latency_s": 0.08359789799987993, "completion_tokens": 2}
+{"id": "bench-043", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-044", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-045", "raw": "[]", "error": null, "latency_s": 0.07860548600001493, "completion_tokens": 2}
+{"id": "bench-046", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-047", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-048", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-049", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-050", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-051", "raw": "[]", "error": null, "latency_s": 0.08378370599984919, "completion_tokens": 2}
+{"id": "bench-052", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-053", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-054", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-055", "raw": "[]", "error": null, "latency_s": 0.08030300600012197, "completion_tokens": 2}
+{"id": "bench-056", "raw": "[]", "error": null, "latency_s": 0.08414740800003528, "completion_tokens": 2}
+{"id": "bench-057", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-058", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-059", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-060", "raw": "[]", "error": null, "latency_s": 0.08512802500013095, "completion_tokens": 2}
+{"id": "bench-061", "raw": "[]\nExplicação: A mensagem menciona um detalhe específico sobre onde os logs são armazenados, que é um fato transitório relacionado ao dia a dia do projeto e não é algo que seja necessário documentar como uma regra duradoura ou uma convenção geral.", "error": null, "latency_s": 1.5949232590000975, "completion_tokens": 61}
+{"id": "bench-062", "raw": "[]\nExplicação: A mensagem fornecida é um contexto geral sobre onde o serviço de pagamentos está rodando e não contém nenhum fato durável que descreva configurações, decisões do time, convenções, ferramentas usadas ou regras.", "error": null, "latency_s": 2.0457340250000016, "completion_tokens": 78}
+{"id": "bench-063", "raw": "[\n  {\n    \"subject_key\": \"version_control.never_force_push\",\n    \"value\": \"main\",\n    \"kind\": \"procedural\",\n    \"statement\": \"O time proibiu fazer force push na main.\"\n  }\n]", "error": null, "latency_s": null, "completion_tokens": 52}
+{"id": "bench-064", "raw": "[]", "error": null, "latency_s": 0.08726152899998851, "completion_tokens": 2}
+{"id": "bench-065", "raw": "[]", "error": null, "latency_s": 0.08790634100000716, "completion_tokens": 2}
+{"id": "bench-066", "raw": "[]", "error": null, "latency_s": 0.08456450000016957, "completion_tokens": 2}
+{"id": "bench-067", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-068", "raw": "[]", "error": null, "latency_s": 0.0835810290000154, "completion_tokens": 2}
+{"id": "bench-069", "raw": "[]\nA mensagem menciona uma ação passada (fazer um force push) e uma opinião pessoal (\"de boa\"), ambos não são fatos duráveis.", "error": null, "latency_s": null, "completion_tokens": 37}
+{"id": "bench-070", "raw": "[]", "error": null, "latency_s": 0.08398141800012127, "completion_tokens": 2}
+{"id": "bench-071", "raw": "[]", "error": null, "latency_s": 0.08059451600001921, "completion_tokens": 2}
+{"id": "bench-072", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-073", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-074", "raw": "[]", "error": null, "latency_s": 0.08638837700004842, "completion_tokens": 2}
+{"id": "bench-075", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-076", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-077", "raw": "[]", "error": null, "latency_s": 0.0777329140000802, "completion_tokens": 2}
+{"id": "bench-078", "raw": "[]", "error": null, "latency_s": 0.08297408199996426, "completion_tokens": 2}
+{"id": "bench-079", "raw": "[]", "error": null, "latency_s": 0.08252150399994207, "completion_tokens": 2}
+{"id": "bench-080", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-081", "raw": "[]\nA mensagem contém uma opinião passageira que não é durável e não descreve nenhuma regra ou convenção que permaneça válida nas próximas semanas.", "error": null, "latency_s": 1.1188722580000103, "completion_tokens": 42}
+{"id": "bench-082", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-083", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-084", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-085", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-086", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-087", "raw": "[]", "error": null, "latency_s": 0.08019534400000339, "completion_tokens": 2}
+{"id": "bench-088", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-089", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-090", "raw": "[]", "error": null, "latency_s": 0.07994271400002617, "completion_tokens": 2}
+{"id": "bench-091", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-092", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-093", "raw": "[]", "error": null, "latency_s": 0.0852997269998923, "completion_tokens": 2}
+{"id": "bench-094", "raw": "[\n  {\n    \"subject_key\": \"logging.storage_region\",\n    \"value\": \"us-east-1\",\n    \"kind\": \"semantic\",\n    \"statement\": \"O bucket de logs antigos está localizado na região us-east-1.\"\n  }\n]", "error": null, "latency_s": null, "completion_tokens": 55}
+{"id": "bench-095", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-096", "raw": "[]", "error": null, "latency_s": 0.08534427199992933, "completion_tokens": 2}
+{"id": "bench-097", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-098", "raw": "[]", "error": null, "latency_s": 0.08561863499994615, "completion_tokens": 2}
+{"id": "bench-099", "raw": "[]", "error": null, "latency_s": 0.08298882599979152, "completion_tokens": 2}
+{"id": "bench-100", "raw": "[\n  {\n    \"subject_key\": \"backend.region\",\n    \"value\": \"sa-east-1\",\n    \"kind\": \"semantic\",\n    \"statement\": \"A partir de hoje, o serviço de pagamentos será executado na região sa-east-1.\"\n  }\n]", "error": null, "latency_s": 1.5161670780000804, "completion_tokens": 58}
+{"id": "bench-101", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-102", "raw": "[]", "error": null, "latency_s": 0.08930935299986231, "completion_tokens": 2}
+{"id": "bench-103", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-104", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-105", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-106", "raw": "[]", "error": null, "latency_s": 0.08472633099995619, "completion_tokens": 2}
+{"id": "bench-107", "raw": "[]", "error": null, "latency_s": 0.08033230099999855, "completion_tokens": 2}
+{"id": "bench-108", "raw": "[]", "error": null, "latency_s": 0.08385077799994178, "completion_tokens": 2}
+{"id": "bench-109", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-110", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-111", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-112", "raw": "[]", "error": null, "latency_s": 0.07841805099997146, "completion_tokens": 2}
+{"id": "bench-113", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-114", "raw": "[]", "error": null, "latency_s": 0.07729275400015467, "completion_tokens": 2}
+{"id": "bench-115", "raw": "[\n  {\n    \"subject_key\": \"logging.storage_region\",\n    \"value\": \"us-east-1\",\n    \"kind\": \"semantic\",\n    \"statement\": \"O bucket de logs antigos está localizado na região us-east-1.\"\n  }\n]", "error": null, "latency_s": null, "completion_tokens": 55}
+{"id": "bench-116", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-117", "raw": "[]", "error": null, "latency_s": 0.08685923500001991, "completion_tokens": 2}
+{"id": "bench-118", "raw": "[]", "error": null, "latency_s": 0.084373904000131, "completion_tokens": 2}
+{"id": "bench-119", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-120", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-121", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-122", "raw": "[]", "error": null, "latency_s": 0.0853608519998943, "completion_tokens": 2}
+{"id": "bench-123", "raw": "[\n  {\n    \"subject_key\": \"payment_service.region\",\n    \"value\": \"us-east-1\",\n    \"kind\": \"semantic\",\n    \"statement\": \"O serviço de pagamento está configurado para usar a região us-east-1.\"\n  }\n]", "error": null, "latency_s": 1.4463634460000776, "completion_tokens": 55}
+{"id": "bench-124", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-125", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-126", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-127", "raw": "[]\nExplicação: A mensagem relata uma ação específica realizada no dia-a-dia do projeto, que provavelmente será alterada em breve. Portanto, não há fatos duráveis extraídos desta mensagem.", "error": null, "latency_s": 1.2968807919999108, "completion_tokens": 49}
+{"id": "bench-128", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-129", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}
+{"id": "bench-130", "raw": "[]", "error": null, "latency_s": null, "completion_tokens": 2}

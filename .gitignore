@@ -4,7 +4,10 @@ __pycache__/
 .pytest_cache/
 data/generated/
 data/labeled/
-results/
+results/*
+!results/kaggle-run2/
+results/kaggle-run2/results/bench/trace_*.jsonl
+results/kaggle-run2/results/bench/runs_*.csv
 models/
 logs/
 *.gguf

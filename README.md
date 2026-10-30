@@ -18,48 +18,52 @@ Só que um 7B para cada mensagem é caro. Este projeto destila esse extrator par
 Tudo o que precisa de GPU roda num notebook público do Kaggle (T4); localmente ficam o código, os
 testes e a geração de dados.
 
-> **Primeira rodada (2026-10-30):** a recuperação ficou em 82–83% para todos os extratores,
-> contra 98% publicados. O motivo, a correção na memória (`v5_guarded`) e a correção nos dados
-> estão em [`docs/diagnostico.md`](docs/diagnostico.md).
-
 ## Resultados
 
-> Os números abaixo são preenchidos depois da execução no Kaggle (`notebooks/fact_extractor_distill.ipynb`).
-> Enquanto estiverem como `TBD`, o experimento ainda não rodou.
+Rodada de 2026-10-30, a segunda no Kaggle (T4 x2): professor Qwen2.5-7B-Instruct-AWQ no vLLM,
+aluno Qwen2.5-0.5B-Instruct com LoRA r=16, 2 épocas, treinado com os 2433 rótulos de treino que
+passaram nos verificadores (de 3000). Os arquivos da rodada estão em
+[`results/kaggle-run2/`](results/kaggle-run2/), e o modelo e o dataset estão no Hugging Face:
+[modelo](https://huggingface.co/DevTheusP/qwen2.5-0.5b-fact-extractor-ptbr) ·
+[dataset](https://huggingface.co/datasets/DevTheusP/fact-extractor-distill-ptbr).
 
-### Extração (teste do benchmark, referência = professor, modo guiado)
+A primeira rodada (sem verificadores) deu 82–83% de recuperação para todos os extratores. O que
+estava errado e como foi corrigido está em [`docs/diagnostico.md`](docs/diagnostico.md).
 
-131 pares (mensagem, chaves existentes) que o benchmark de fato mandou ao extrator na rodada publicada.
+### Extração: teste sintético com áreas e regras fora do treino, referência = gabarito do template
 
-| modelo | parâmetros | JSON válido | F1 estrito | F1 por valor | reutilização de chave | kind | lista vazia certa | latência p50 | tokens/s |
-|---|---|---|---|---|---|---|---|---|---|
-| Qwen2.5-0.5B-Instruct (base) | 0,5B | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| Qwen2.5-0.5B destilado (LoRA) | 0,5B | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| Qwen2.5-7B-Instruct-AWQ (professor) | 7B | TBD | (referência) | (referência) | (referência) | (referência) | (referência) | TBD | TBD |
+| modelo | parâmetros | schema válido (guiado) | schema válido (sem gramática) | F1 por valor | F1 estrito | kind | lista vazia certa | latência p50 |
+|---|---|---|---|---|---|---|---|---|
+| Qwen2.5-0.5B-Instruct (base) | 0,5B | 99,3% | 0% | 36,1% | 4,9% | 36,9% | 6,9% | 0,69 s |
+| **Qwen2.5-0.5B destilado** | 0,5B | **100%** | **99,7%** | **66,1%** | **25,7%** | **87,2%** | **97,2%** | **0,28 s** |
+| Qwen2.5-7B-Instruct-AWQ (professor) | 7B | 100% | 0% | 61,9% | 23,5% | 62,1% | 94,4% | 1,50 s |
 
-### Extração sem gramática (teste sintético com áreas e regras novas, modo livre)
-
-Mede se o modelo aprendeu o formato sozinho, sem `response_format`.
-
-| modelo | JSON válido | schema válido | F1 estrito | F1 por valor | lista vazia certa |
-|---|---|---|---|---|---|
-| aluno base | TBD | TBD | TBD | TBD | TBD |
-| aluno destilado | TBD | TBD | TBD | TBD | TBD |
-| professor (vs. gabarito do template) | TBD | TBD | — | TBD | TBD |
+- O aluno passa o professor no gabarito porque aprendeu dos rótulos já filtrados: sem chave
+  existente sem relação, sem statement em inglês e com o `kind` corrigido.
+- "Sem gramática", o professor devolve uma lista (`[...]`) em vez de `{"facts": [...]}`: o prompt
+  do benchmark não mostra esse formato, só a gramática garante. O aluno aprendeu o formato no treino.
+- F1 estrito exige a mesma `subject_key`; os nomes de chave variam muito entre modelos, por isso o
+  F1 por valor é a métrica principal.
 
 ### agent-memory-bench, camada 1 (recuperação média, grade publicada: 5 seeds × 5 ruídos × 5 pausas)
 
-| extrator | v1_naive | v2_keyed | update | scope | rare_fact | injection |
-|---|---|---|---|---|---|---|
-| publicado: qwen2.5:7b no Ollama | 62% | 98% | — | — | — | — |
-| professor no Kaggle (7B AWQ, vLLM) | TBD | TBD | TBD | TBD | TBD | TBD |
-| aluno base 0,5B | TBD | TBD | TBD | TBD | TBD | TBD |
-| aluno destilado 0,5B | TBD | TBD | TBD | TBD | TBD | TBD |
+| extrator | v1_naive | v2_keyed | v5_guarded | regra rara (v2 → v5) | falhas de JSON |
+|---|---|---|---|---|---|
+| publicado: qwen2.5:7b no Ollama | 62,0% | 98,0% | 99,6%* | 92,0% → 98,3%* | 0 |
+| professor (7B AWQ, vLLM) | 62,0% | 83,4% | 97,9% | 33,7% → 91,4% | 0 |
+| aluno base 0,5B | 62,0% | 83,3% | 97,6% | 33,1% → 91,4% | 58 |
+| **aluno destilado 0,5B** | 62,0% | **100%** | **100%** | **100% → 100%** | 0 |
 
-A `v1_naive` não usa LLM; ela funciona como controle e deve dar o mesmo número em todas as linhas do
-Kaggle. Se o professor no Kaggle não chegar perto dos 98% publicados, a diferença vem do ambiente
-(AWQ x q4 do Ollama, bge-m3 via sentence-transformers x Ollama), não do aluno; por isso a comparação
-justa é sempre entre linhas do Kaggle.
+\* reprocessado em CPU com o cache de extração publicado (ver o diagnóstico).
+
+Como ler:
+
+- A `v1_naive` não usa extrator e dá o mesmo número em todas as linhas: é o controle.
+- Na v2, o professor perde a regra rara porque escreveu o statement em inglês, e a similaridade
+  com a pergunta (em português) cai abaixo de um ruído que se repete toda semana. O aluno escreveu
+  em português e ficou acima, **mas por pouco**: 0,649 contra 0,635. O resultado robusto é o da v5.
+- Com a v5, até o aluno base chega a 97,6%. A camada de recuperação mede mais a política de memória
+  do que a qualidade do extrator; para comparar extratores, valem as métricas de extração acima.
 
 ## Método
 
@@ -230,7 +234,10 @@ tests/            testes locais (pytest)
   os fatos de verdade são poucos (as 4 mensagens dos cenários aparecem algumas vezes com listas de
   chaves diferentes). Um erro muda vários pontos percentuais; os intervalos de confiança são largos.
 - **O alvo é o professor, com os erros dele.** Destilação por rótulo copia também os enganos do 7B.
-  A referência "gabarito" existe para separar o que é erro do aluno do que é erro herdado.
+  Os verificadores (`label_issues`, `repair_kinds`) tiram os três vícios medidos, mas só esses: um
+  erro do professor que não viole nenhum verificador continua indo para o aluno.
+- **Limiar e deduplicação da v5.** O limiar de 0,55 foi calibrado em 3 substituições, e a
+  deduplicação só junta textos idênticos; ruído parafraseado continuaria competindo pelas vagas.
 - **Gabarito com chaves canônicas.** O nome da chave é arbitrário (o professor escolhe), então contra
   o gabarito só o F1 por valor, a reutilização e a lista vazia são informativos; o F1 estrito contra o
   gabarito não é.

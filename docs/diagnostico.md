@@ -78,9 +78,26 @@ limitação do benchmark, não uma prova de que a proteção é inútil.
 - O notebook passa a publicar no dataset as predições, os relatórios e os caches de extração
   do benchmark: a sessão do Kaggle apaga `/kaggle/working`, e a primeira rodada perdeu tudo isso.
 
+## 6. Segunda rodada no Kaggle, com os verificadores
+
+Os verificadores tiraram 242 rótulos com chave sem relação e 325 com statement em inglês, e
+corrigiram o `kind` de 298 (sobraram 2433 de 3000 no treino). O aluno re-treinado não inventou
+nenhum fato no benchmark e escreveu tudo em português:
+
+| extrator | v2_keyed | v5_guarded |
+|---|---|---|
+| professor (7B AWQ) | 83,4% | 97,9% |
+| aluno base | 83,3% | 97,6% |
+| aluno destilado com verificadores | 100% | 100% |
+
+O 100% na v2 tem margem pequena: o statement do aluno ("Nunca realizar forcer push na main.")
+fica em 0,673 contra 0,635 do ruído, e 0,649 sem o erro de digitação. O professor escreveu a
+regra em inglês (0,537) e perdeu. A comparação robusta entre extratores são as métricas de
+extração no README.
+
 ## Limitações
 
 - O limiar 0,55 foi calibrado em 3 substituições do próprio benchmark.
 - A deduplicação é por texto idêntico; ruído parafraseado continuaria competindo.
-- Os números com o professor do Kaggle vêm de um replay com cache incompleto (68 de 131
-  chamadas sem resposta gravada); só a próxima rodada no Kaggle mede o professor ao vivo.
+- O replay do professor da primeira rodada usou cache incompleto (68 de 131 chamadas sem
+  resposta gravada); a seção 6 mede o professor ao vivo.

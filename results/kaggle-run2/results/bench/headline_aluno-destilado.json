@@ -1,0 +1,50 @@
+{
+  "name": "aluno-destilado",
+  "guided": true,
+  "extractor_calls": 160,
+  "extractor_failures": 0,
+  "headline": {
+    "v0_no_memory": {
+      "retrieval": 0.21428571428571427,
+      "ret_update": 0,
+      "ret_scope": 0,
+      "ret_rare_fact": 0,
+      "ret_injection": 1
+    },
+    "v1_naive": {
+      "retrieval": 0.62,
+      "ret_update": 1,
+      "ret_scope": 1,
+      "ret_rare_fact": 0.33714285714285713,
+      "ret_injection": 0
+    },
+    "v2_keyed": {
+      "retrieval": 1,
+      "ret_update": 1,
+      "ret_scope": 1,
+      "ret_rare_fact": 1,
+      "ret_injection": 1
+    },
+    "v3_decay_rank": {
+      "retrieval": 0.7171428571428572,
+      "ret_update": 0.964,
+      "ret_scope": 0.544,
+      "ret_rare_fact": 0.3657142857142857,
+      "ret_injection": 1
+    },
+    "v4_decay_tier": {
+      "retrieval": 0.6937142857142857,
+      "ret_update": 1,
+      "ret_scope": 0.37485714285714283,
+      "ret_rare_fact": 0.4,
+      "ret_injection": 1
+    },
+    "v5_guarded": {
+      "retrieval": 1,
+      "ret_update": 1,
+      "ret_scope": 1,
+      "ret_rare_fact": 1,
+      "ret_injection": 1
+    }
+  }
+}
