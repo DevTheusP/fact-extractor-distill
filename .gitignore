@@ -6,9 +6,13 @@ data/generated/
 data/labeled/
 results/*
 !results/kaggle-run2/
+!results/cpu/
+results/cpu/hf_README_live.md
 results/kaggle-run2/results/bench/trace_*.jsonl
 results/kaggle-run2/results/bench/runs_*.csv
 models/
 logs/
 *.gguf
 *.egg-info/
+results/cpu/system_prompt.txt
+results/cpu/Modelfile

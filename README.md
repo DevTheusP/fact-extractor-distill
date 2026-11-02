@@ -243,8 +243,10 @@ tests/            testes locais (pytest)
   gabarito não é.
 - **Professor do Kaggle ≠ professor publicado.** AWQ no vLLM e q4 no Ollama não dão saídas idênticas,
   e o bge-m3 via sentence-transformers não é bit a bit o do Ollama.
-- **Latência medida em T4 com vLLM.** Os números servem para comparar os modelos entre si, não
-  para prever latência em CPU ou no Ollama.
+- **Latência das tabelas medida em T4 com vLLM.** Servem para comparar os modelos entre si. Em CPU
+  de notebook (Ryzen 7 5825U, llama.cpp, GGUF q4_K_M, 8 threads), nas 160 chamadas reais do
+  benchmark: p50 de 0,20 s com o `SYSTEM` em cache e 1,04 s sem cache, ~550 MB de RAM. Tabela
+  completa no [model card](hf/MODEL_CARD.md) e script em [`results/cpu/`](results/cpu/).
 - **Só a camada 1.** A camada 2 do benchmark (resposta do agente) depende de o modelo de resposta
   obedecer à memória, o que não muda com o extrator; ficou fora.
 

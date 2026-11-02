@@ -1,0 +1,14 @@
+{
+  "label": "t4",
+  "prompt_cache": true,
+  "calls": 160,
+  "latency_p50_s": 0.2842002855031751,
+  "latency_p90_s": 0.37983139988500625,
+  "latency_max_s": 1.3021713340422139,
+  "latency_p50_s_empty": 0.28178915806347504,
+  "latency_p50_s_with_facts": 1.1457522910786793,
+  "prompt_tokens_p50": 22.0,
+  "prefill_tok_s": 133.5324530520696,
+  "decode_tok_s": 52.98060575787319,
+  "same_output_as_t4": "152/160"
+}
